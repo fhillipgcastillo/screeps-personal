@@ -16,5 +16,13 @@ module.exports = {
       spawner.pos.y + 1,
       { align: "left", opacity: 0.8 }
     );
+    
+    spawner.room.visual.text(
+      "Controller level: " + spawner.room.controller.level,
+      spawner.pos.x + 1,
+      spawner.pos.y + 2,
+      { align: "left", opacity: 0.8 }
+    );
+    
   },
 };

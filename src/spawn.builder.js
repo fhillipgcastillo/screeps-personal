@@ -39,13 +39,10 @@ var spawnBuilder = {
 
     var buildersLimit = getMaxSpawns(spawner);
 
-    var harvesters = _.filter(
-      Game.creeps,
-      (creep) => creep.memory.role === "harvester"
-    );
+    var harvesters = _.filter( Game.creeps, (creep) => creep.memory.role === "harvester" && creep.spawning === false);
 
     if (
-      harvesters.length > builders.length &&
+      harvesters.length > 0 && harvesters.length > builders.length &&
       builders.length < buildersLimit
     ) {
       createBuilder(spawner, [WORK, CARRY, MOVE]);

@@ -24,13 +24,10 @@ var spawnUpgrader = {
     console.log("Upgraders: " + upgraders.length);
 
     var maxAmountOfSpawns = utils.getMaxSpawns(spawner);
-    var harvesters = _.filter(
-      Game.creeps,
-      (creep) => creep.memory.role === "harvester"
-    );
+    var harvesters = _.filter( Game.creeps, (creep) => creep.memory.role === "harvester" && creep.spawning === false);
 
     if (
-      harvesters.length > upgraders.length &&
+      harvesters.length > 0 && harvesters.length > upgraders.length &&
       upgraders.length < maxAmountOfSpawns
     ) {
       createUpgrader(spawner, [WORK, CARRY, MOVE]);
