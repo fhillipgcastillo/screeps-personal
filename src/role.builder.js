@@ -1,4 +1,4 @@
-var utils = require('utils');
+var utils = require("utils");
 
 var roleBuilder = {
   /** @param {Creep} creep **/
@@ -27,7 +27,7 @@ var roleBuilder = {
       }
     } else {
       var source = utils.getSourceGatheringName(creep);
-      
+
       if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
         creep.moveTo(source, { visualizePathStyle: { stroke: "#ffaa00" } });
       } else if (creep.memory.harvesting === false) {

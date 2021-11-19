@@ -43,9 +43,9 @@ var spawnBuilder = {
       Game.creeps,
       (creep) => creep.memory.role === "harvester"
     );
-    
+
     if (
-      harvesters.length < builders.length &&
+      harvesters.length > builders.length &&
       builders.length < buildersLimit
     ) {
       createBuilder(spawner, [WORK, CARRY, MOVE]);

@@ -8,8 +8,19 @@
  */
 var utils = require("utils");
 
-function createHarvester(spawner, body) {
+function getBody(spawner) {
+  var ctLevel = spawner.room.controller.level;
+  if (ctLevel === 1) {
+    return [WORK, WORK, WORK, MOVE, MOVE, CARRY];
+  } else if (ctLevel > 1) {
+    return [WORK, WORK, WORK, MOVE, MOVE, MOVE, CARRY, CARRY];
+  }
+}
+
+function createHarvester(spawner, first = false) {
   var name = "Harvester" + Game.time;
+  var body = first ? [WORK, CARRY, MOVE] : getBody(spawner);
+
   var res = spawner.spawnCreep(body, name, {
     memory: { role: "harvester", harvesting: false },
   });
@@ -23,10 +34,10 @@ var spawnHarvester = {
     );
     console.log("Harvesters: " + harvesters.length);
     var maxSpawns = utils.getMaxSpawns(spawner);
-    console.log("max for harv", maxSpawns);
-
-    if (harvesters.length < maxSpawns) {
-      createHarvester(spawner, [WORK, CARRY, MOVE]);
+    if (harvesters.length === 0) {
+      createHarvester(spawner, true);
+    } else if (harvesters.length < maxSpawns) {
+      createHarvester(spawner);
     }
   },
 };
