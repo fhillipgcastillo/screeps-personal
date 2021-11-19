@@ -20,8 +20,17 @@ function getMaxSpawns(spawner){
           amount=spawner.room.controller.level**2
   }
   return amount;
+};
+
+function getSourceGatheringName(creep){
+  var sources = creep.room.find(FIND_SOURCES);
+
+  var resourceGathering = _.filter(Game.creeps, (c) => c.memory.harvesting === true && c.memory.sourceId);
+  var source = resourceGathering.length > 4 && sources.length >= 2 ? sources[1] : sources[0];
+  return source;
 }
 
 module.exports = {
-  getMaxSpawns: getMaxSpawns
+  getMaxSpawns: getMaxSpawns,
+  getSourceGatheringName: getSourceGatheringName,
 };

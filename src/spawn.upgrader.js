@@ -10,7 +10,7 @@ var utils = require('utils');
 
 function createUpgrader(spawner, body){
     var name = 'Upgrader'+Game.time;
-    spawner.spawnCreep(body, name, {memory: {role: 'upgrader'}});
+    spawner.spawnCreep(body, name, {memory: {role: 'upgrader', harvesting: false}});
 };
 
  var spawnUpgrader = {
@@ -19,7 +19,13 @@ function createUpgrader(spawner, body){
         console.log('Upgraders: '+ upgraders.length);
         
         var maxAmountOfSpawns = utils.getMaxSpawns(spawner); 
-        if(upgraders.length < maxAmountOfSpawns){
+        var harvesters = _.filter(
+          Game.creeps,
+          (creep) => creep.memory.role === "harvester"
+        );
+        
+        if (
+          harvesters.length < upgraders.length && upgraders.length < maxAmountOfSpawns){
             createUpgrader(spawner, [WORK, CARRY, MOVE]);
         }
     }
