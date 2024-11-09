@@ -23,7 +23,7 @@ function getMaxSpawns(spawner){
 };
 
 function getSourceGatheringName(creep){
-  var sources = creep.room.find(FIND_SOURCES);
+  var sources = creep.room.find(FIND_SOURCES_ACTIVE );
 
   var resourceGathering = _.filter(Game.creeps, (c) => c.memory.harvesting === true && c.memory.sourceId);
   var source = resourceGathering.length > 4 && sources.length >= 2 ? sources[1] : sources[0];

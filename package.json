@@ -4,12 +4,16 @@
   "description": "",
   "main": "Gruntfile.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "grunt": "grunt screeps --ptr=true --branch=development",
+    "start": "npx screeps init"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "grunt": "^1.4.1",
+    "grunt-contrib-clean": "^2.0.0",
+    "grunt-contrib-copy": "^1.0.0",
     "grunt-screeps": "^1.5.0"
   }
 }

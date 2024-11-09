@@ -6,27 +6,13 @@
  * var mod = require('spawn.builder');
  * mod.thing == 'a thing'; // true
  */
+var utils = require('utils');
 
 function createBuilder(spawner, body) {
   var name = "Builder" + Game.time;
   spawner.spawnCreep(body, name, {
     memory: { role: "builder", building: false, harvesting: false },
   });
-}
-
-function getMaxSpawns(spawner) {
-  var amount = 0;
-  switch (spawner.room.controller.level) {
-    case 1:
-      amount = 2;
-      break;
-    case 2:
-      amount = 5;
-      break;
-    default:
-      amount = spawner.room.controller.level ** 2;
-  }
-  return amount;
 }
 
 var spawnBuilder = {
@@ -37,7 +23,7 @@ var spawnBuilder = {
     );
     console.log("Builders: " + builders.length);
 
-    var buildersLimit = getMaxSpawns(spawner);
+    var buildersLimit = utils.getMaxSpawns(spawner);
 
     var harvesters = _.filter( Game.creeps, (creep) => creep.memory.role === "harvester" && creep.spawning === false);
 
